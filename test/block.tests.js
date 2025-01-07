@@ -19,27 +19,51 @@ async function testBlock(spec) {
 }
 
 describe('md2jcr Tests', () => {
-  it('test key value blocks', async () => {
-    await testBlock('key-value');
-  });
-
-  it('default block test', async () => {
+  it('block', async () => {
     await testBlock('block');
   });
 
-  it('test field grouping in a block', async () => {
-    await testBlock('grouping');
-  });
-
-  it('test for container block', async () => {
+  it('container-block', async () => {
     await testBlock('container-block');
   });
 
-  it('test for metadata block', async () => {
+  it('grouping', async () => {
+    await testBlock('grouping');
+  });
+
+  it('grouping-with-defaults', async () => {
+    await testBlock('grouping-with-defaults');
+  });
+
+  it('hero', async () => {
+    await testBlock('hero');
+  });
+
+  it('hero-richtext', async () => {
+    await testBlock('hero-richtext');
+  });
+
+  it('key-value', async () => {
+    await testBlock('key-value');
+  });
+
+  it('metadata', async () => {
     await testBlock('metadata');
   });
 
-  it('test for expanded metadata block', async () => {
+  it('metadata-expanded', async () => {
     await testBlock('metadata-expanded');
+  });
+
+  it('paragraph', async () => {
+    await testBlock('paragraph');
+  });
+
+  it('richtext', async () => {
+    await testBlock('richtext');
+  });
+
+  it('section-metadata', async () => {
+    await testBlock('section-metadata');
   });
 });
