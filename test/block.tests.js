@@ -55,12 +55,20 @@ describe('md2jcr Tests', () => {
     await testBlock('metadata-expanded');
   });
 
+  it('multi-cell', async () => {
+    await testBlock('multi-cell');
+  });
+
   it('paragraph', async () => {
     await testBlock('paragraph');
   });
 
   it('richtext', async () => {
     await testBlock('richtext');
+  });
+
+  it('richtext-greedy', async () => {
+    await testBlock('richtext-greedy');
   });
 
   it('section-metadata', async () => {

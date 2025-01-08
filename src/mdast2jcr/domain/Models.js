@@ -24,6 +24,9 @@
  * @return {Model}
  */
 function findModelById(models, modelId) {
+  if (!models || Object.keys(models)?.length === 0) {
+    throw new Error('No models are provided. Check your model\'s JSON file.');
+  }
   return models.find((model) => model.id === modelId);
 }
 

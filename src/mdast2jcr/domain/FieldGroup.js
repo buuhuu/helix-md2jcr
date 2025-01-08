@@ -39,7 +39,6 @@ class FieldGroup {
         if (field.name.includes('_')) {
           const groupName = field.name.split('_')[0];
           const groupObj = this.fields.find((item) => item.name === groupName) || {
-            isRichText: false,
             name: groupName,
             fields: [],
           };
@@ -65,7 +64,6 @@ class FieldGroup {
 
           if (!groupObj) {
             groupObj = {
-              isRichText: field.component === 'richtext',
               name: field.name,
               fields: [field],
             };

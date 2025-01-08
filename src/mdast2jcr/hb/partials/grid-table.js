@@ -132,15 +132,13 @@ function extractPropertiesForNode(field, currentNode, properties) {
 
   if (field.component === 'richtext') {
     let value;
-    const hasParagraphChildren = currentNode.children && find(currentNode, { type: 'paragraph' });
-
-    // if we're not a paragraph, and we have paragraph children then we need to wrap the children
-    // in a paragraph
-    if (currentNode.type !== 'paragraph' && hasParagraphChildren) {
+    if (currentNode.type === 'wrapper') {
       // combine all the children into a single string, but wrap them in a paragraph
       value = currentNode.children.reduce((acc, node) => {
         let str = toHtml(toHast(node));
-        if (node.type !== 'paragraph') {
+
+        // don't wrap nodes that are already paragraphs or code blocks
+        if (node.type !== 'paragraph' && node.type !== 'code') {
           str = `<p>${str}</p>`;
         }
         return acc + encodeHtml(str);
@@ -150,7 +148,7 @@ function extractPropertiesForNode(field, currentNode, properties) {
     }
 
     // if the node is a code block then don't strip out the newlines
-    properties[field.name] = currentNode.type !== 'code' ? stripNewlines(value) : value;
+    properties[field.name] = find(currentNode, { type: 'code' }) ? value : stripNewlines(value);
   } else if (field.component === 'reference') {
     const imageNode = find(currentNode, { type: 'image' });
     const { url } = image.getProperties(imageNode);
@@ -250,51 +248,39 @@ function extractProperties(mdast, model, mode, component, fields, properties) {
 
     if (mode === 'keyValue') {
       extractKeyValueProperties(row, model, fieldResolver, fieldGroup, properties);
-    } else if (fieldGroup.isRichText && nodes.length > 1) {
-      // the user has defined a rich text field, and has multiple nodes in the
-      // cell so we group them.
-      const wrapped = {
-        type: 'md2jcr-wrapped',
-        children: nodes,
-      };
-      const field = fieldResolver.resolve(wrapped, fieldGroup);
-      extractPropertiesForNode(field, wrapped, properties);
     } else {
-      if (fieldGroup.fields.length < nodes.length) {
-        let startIndex = -1;
-        let endIndex = -1;
-        const pWrapper = {
-          type: 'xxx',
-          children: [],
-        };
-        nodes.forEach((node, i) => {
-          if (find(node, { type: 'image' })) {
-            endIndex = i;
-            return;
-          }
-          if (node.type === 'paragraph') {
-            if (startIndex === -1) {
-              startIndex = i;
-            }
-          }
-          if (startIndex !== -1) {
-            pWrapper.children.push(node);
-          }
-        });
-
-        // we only rearrange if we need to if we found an image
-        if (endIndex !== -1) {
-          nodes.splice(0, endIndex - startIndex, pWrapper);
-        }
-      }
-
-      nodes.forEach((node) => {
+      while (nodes.length > 0) {
+        const node = nodes.shift();
         if (mode === 'blockItem') {
           fieldGroup = fieldsCloned.shift();
         }
         const field = fieldResolver.resolve(node, fieldGroup);
-        extractPropertiesForNode(field, node, properties);
-      });
+        let pWrapper;
+        if (field.component === 'richtext') {
+          pWrapper = {
+            type: 'wrapper',
+            children: [node],
+          };
+
+          let searching = true;
+
+          while (searching) {
+            const n = nodes.shift();
+            if (!n) break;
+
+            if (find(n, { type: 'image' })) {
+              nodes.unshift(n);
+              searching = false;
+            }
+            if (searching) {
+              pWrapper.children.push(n);
+            }
+          }
+        } else {
+          pWrapper = node;
+        }
+        extractPropertiesForNode(field, pWrapper, properties);
+      }
     }
   }
 }
@@ -393,6 +379,11 @@ function gridTablePartial(context) {
     filters,
     ...mdast
   } = context;
+
+  // if models is not an array throw an error
+  if (!Array.isArray(models)) {
+    throw new Error('Do you have a `*-models.json` file?');
+  }
 
   const uniqueName = Handlebars.helpers.nameHelper.call(context, 'block');
 

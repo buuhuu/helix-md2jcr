@@ -1,0 +1,49 @@
+[
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "hero_description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "hero_image2",
+        "label": "Image2",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "hero_link",
+        "value": "",
+        "label": "Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "hero_linkText",
+        "value": "",
+        "label": "Link Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Classes",
+        "value": ""
+      }
+    ]
+  }
+]

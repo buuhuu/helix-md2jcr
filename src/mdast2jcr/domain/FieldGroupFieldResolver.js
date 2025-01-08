@@ -47,7 +47,6 @@ class FieldGroupFieldResolver {
    * @param {{isGrouped: boolean, name: string, fields: [],
    * collapsed: [{isGrouped: boolean, name: string, fields: []}]}} fieldGroup - the field group
    */
-  // eslint-disable-next-line class-methods-use-this
   resolve(node, fieldGroup) {
     const { fields } = fieldGroup;
 

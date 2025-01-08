@@ -1,0 +1,27 @@
+[
+  {
+    "id": "multi-cell",
+    "fields": [
+      {
+        "component": "text",
+        "name": "Row 1",
+        "label": "Link Text"
+      },
+      {
+        "component": "text",
+        "name": "lang_code",
+        "label": "Lang Code"
+      },
+      {
+        "component": "text",
+        "name": "lang_full",
+        "label": "Language"
+      },
+      {
+        "component": "text",
+        "name": "lang_description",
+        "label": "Description"
+      }
+    ]
+  }
+]

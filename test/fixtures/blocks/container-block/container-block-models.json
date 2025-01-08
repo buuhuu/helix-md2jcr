@@ -24,12 +24,12 @@
         "label": "Field 1"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "field2",
         "label": "Field 2"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "field3",
         "label": "Field 3"
       }
@@ -64,12 +64,12 @@
         "label": "Field 1"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "field2",
         "label": "Field 2"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "field3",
         "label": "Field 3"
       },
