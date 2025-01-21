@@ -20,7 +20,7 @@ describe('Model Helper Tests', () => {
   let filters;
 
   before(async () => {
-    ({ models, definition, filters } = await loadBlockResources('container-block'));
+    ({ models, definition, filters } = await loadBlockResources('container-block', 'fixtures/blocks/core/container-block'));
   });
 
   it('Verify container block and child models are assembled correctly', () => {
@@ -41,5 +41,21 @@ describe('Model Helper Tests', () => {
 
     // trainwithclass
     assert(modelHelper.groups[4].fieldGroup.fields.length === 3);
+  });
+
+  /**
+   * Verify that the model helper can handle a model fields that are out of order.
+   * This test uses the fixtures/unit/fields-out-of-order.json file to test the
+   * model helper. There's no need for markdown for this scenario.
+   */
+  it('Verify field order is correct', async () => {
+    // eslint-disable-next-line no-shadow
+    const { models, definitions, filters } = await loadBlockResources('fields-out-of-order', 'fixtures/unit/fields-out-of-order');
+
+    assert.throws(() => {
+      // eslint-disable-next-line no-new
+      new ModelHelper('hero', models, definitions, filters);
+    }, "Error: Warning in model 'hero': Fields with suffixes should follow their base field.\n"
+      + "  - Field 'hero_headlineType' appears before its base field 'hero_headline'.");
   });
 });

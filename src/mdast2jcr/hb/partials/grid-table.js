@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 import { find } from 'unist-util-find';
+import { remove } from 'unist-util-remove';
+import { is } from 'unist-util-is';
 import { toString } from 'mdast-util-to-string';
 import Handlebars from 'handlebars';
 import { toHast } from 'mdast-util-to-hast';
@@ -66,10 +68,6 @@ function getBlockDetails(mdast, definition) {
         block.modelId = 'page-metadata';
       } else if (block.name.toLowerCase() === 'section metadata') {
         block.modelId = 'section-metadata';
-      }
-
-      if (!block.modelId) {
-        throw new Error(`The block '${block.name}' does not have a model associated with it. Please check your definitions file.`);
       }
 
       return block;
@@ -149,10 +147,10 @@ function extractPropertiesForNode(field, currentNode, properties) {
 
     // if the node is a code block then don't strip out the newlines
     properties[field.name] = find(currentNode, { type: 'code' }) ? value : stripNewlines(value);
-  } else if (field.component === 'reference') {
+  } else if (find(currentNode, { type: 'image' })) {
     const imageNode = find(currentNode, { type: 'image' });
     const { url } = image.getProperties(imageNode);
-    properties[field.name] = url;
+    properties[field.name] = encodeHTMLEntities(url);
     collapseField(field.name, fields, imageNode, null, properties);
   } else {
     const linkNode = find(currentNode, { type: 'link' });
@@ -226,6 +224,7 @@ function extractProperties(mdast, model, mode, component, fields, properties) {
       }
     }
   } else {
+    // get rid of the header row, no need for that
     rows.shift();
   }
 
@@ -233,53 +232,74 @@ function extractProperties(mdast, model, mode, component, fields, properties) {
   const fieldResolver = new FieldGroupFieldResolver(component);
 
   for (const [index, row] of rows.entries()) {
-    if (modelFields.length === index) {
+    if (modelFields.length === index || fieldsCloned.length === index) {
       break;
     }
 
     let fieldGroup = fieldsCloned[index];
 
-    let nodes;
+    // gather all the cells from the row
+    const cells = findAll(row, (node) => node.type === 'gtCell', false);
+
+    // if we are block and our first cell is a class field then skip it
     if (mode === 'blockItem' && classesField) {
-      ([, ...nodes] = findAll(row, (node) => node.type === 'gtCell', true));
-    } else {
-      nodes = findAll(row, (node) => node.type === 'gtCell', true);
+      cells.shift();
     }
 
     if (mode === 'keyValue') {
       extractKeyValueProperties(row, model, fieldResolver, fieldGroup, properties);
     } else {
-      while (nodes.length > 0) {
-        const node = nodes.shift();
-        if (mode === 'blockItem') {
+      // for each cell in the row, process the nodes that exist in the cell
+      let processsing = false;
+      for (const cell of cells) {
+        if (mode === 'blockItem' && !processsing) {
           fieldGroup = fieldsCloned.shift();
         }
-        const field = fieldResolver.resolve(node, fieldGroup);
-        let pWrapper;
-        if (field.component === 'richtext') {
-          pWrapper = {
-            type: 'wrapper',
-            children: [node],
-          };
 
-          let searching = true;
-
-          while (searching) {
-            const n = nodes.shift();
-            if (!n) break;
-
-            if (find(n, { type: 'image' })) {
-              nodes.unshift(n);
-              searching = false;
-            }
-            if (searching) {
-              pWrapper.children.push(n);
-            }
-          }
+        const nodes = cell.children;
+        if (nodes.length === 0) {
+          // throw away the field that was associated with the cell
+          fieldGroup.fields.shift();
+          processsing = true;
+          // if there are no nodes in the cell, then we need to skip it
         } else {
-          pWrapper = node;
+          while (nodes.length > 0) {
+            const node = nodes.shift();
+
+            // give the field group (all fields to the resolver)
+            if (fieldGroup === undefined) {
+              console.warn(`No field group for ${model.id}`);
+              return;
+            }
+
+            const field = fieldResolver.resolve(node, fieldGroup);
+            let pWrapper;
+            if (field.component === 'richtext') {
+              pWrapper = {
+                type: 'wrapper',
+                children: [node],
+              };
+
+              let searching = true;
+
+              while (searching) {
+                const n = nodes.shift();
+                if (!n) break;
+
+                if (find(n, { type: 'image' })) {
+                  nodes.unshift(n);
+                  searching = false;
+                }
+                if (searching) {
+                  pWrapper.children.push(n);
+                }
+              }
+            } else {
+              pWrapper = node;
+            }
+            extractPropertiesForNode(field, pWrapper, properties);
+          }
         }
-        extractPropertiesForNode(field, pWrapper, properties);
       }
     }
   }
@@ -302,7 +322,9 @@ function extractBlockHeaderProperties(models, definition, mdast) {
   const props = {};
 
   props.name = blockDetails.name;
-  props.model = blockDetails.modelId;
+  if (blockDetails.modelId) {
+    props.model = blockDetails.modelId;
+  }
 
   const model = findModelById(models, blockDetails.modelId);
 
@@ -327,7 +349,7 @@ function getBlockItems(mdast, modelHelper, definitions, allowedComponents) {
 
   const items = [];
   // get all rows after the header that are more than one cell wide
-  const rows = findAll(mdast, (node) => node.type === 'gtRow' && node.children.length > 1, false);
+  const rows = findAll(mdast, (node) => node.type === 'gtRow', false);
 
   rows.forEach((row) => {
     const cellText = toString(row.children[0]);
@@ -393,10 +415,6 @@ function gridTablePartial(context) {
   // now that we have the name of the block, we can find the associated model
   const model = findModelById(models, blockHeaderProperties.model);
 
-  if (!model && blockHeaderProperties.model !== 'section-metadata' && blockHeaderProperties.model !== 'page-metadata') {
-    throw new Error(`Unable to locate the model for '${blockHeaderProperties.name}' component. Please check the models file to see if one is defined for the component.`);
-  }
-
   let component;
   let mode = 'simple';
 
@@ -407,6 +425,10 @@ function gridTablePartial(context) {
     return '';
   } else {
     component = getComponentByTitle(definition, blockHeaderProperties.name);
+    if (component === undefined) {
+      // we could possibly do a case-insensitive lookup?
+      throw new Error(`The component '${blockHeaderProperties.name}' does not exist. Check the spelling of the component name.`);
+    }
     mode = component.keyValue ? 'keyValue' : 'simple';
   }
 
@@ -418,6 +440,9 @@ function gridTablePartial(context) {
     ...blockHeaderProperties,
   };
 
+  let blockProperties = '';
+  let fieldGroup;
+
   const modelHelper = new ModelHelper(
     blockHeaderProperties.name,
     models,
@@ -425,18 +450,46 @@ function gridTablePartial(context) {
     filters,
   );
 
-  const fieldGroup = modelHelper.getModelFieldGroup(model.id);
-  extractProperties(mdast, model, mode, component, fieldGroup.fields, properties);
+  // it is possible that a block (Accordion) does not have a model, but the
+  // child component will, which will be handled in the Component Block Processing
+  // section
+  if (model) {
+    fieldGroup = modelHelper.getModelFieldGroup(model.id);
+    extractProperties(mdast, model, mode, component, fieldGroup.fields, properties);
 
-  // sort all the properties so that they are in a consistent order
-  // helpful for debugging and xml readability
-  const sorted = Object.entries(properties).sort(sortJcrProperties);
-  const attributesStr = sorted.map(([k, v]) => `${k}="${v}"`).join(' ');
+    // sort all the properties so that they are in a consistent order
+    // helpful for debugging and xml readability
+    const sorted = Object.entries(properties).sort(sortJcrProperties);
+    blockProperties = sorted.map(([k, v]) => `${k}="${v}"`).join(' ');
+  } else {
+    // because we have no model we expect the block to have a filter with a component that does
+    // so that means we can remove the header row from the mdast tree
+    remove(mdast, (n) => is(n, { type: 'gtHeader' }));
+  }
 
+  // *****************************************************
+  // Component Block Processing
+  // *****************************************************
+  // 1. In this section attempt to locate the associated model for the block.
+  // 2. Trim the mdast nodes to only be relevant for the child block.
+  // 3. Then getBlockitems will process the mdast nodes and return the block items.
   const allowedComponents = filters.find((f) => f.id === component.filterId)?.components || [];
+  // collect all rows
+  const blockRows = findAll(mdast, (node) => node.type === 'gtRow', true);
+  // the fieldGroup (parent model) determines the expected number of rows in the table
+  // so we can remove the rows that belong to the parent and leave only the
+  // relevant rows for the child
+  if (model) {
+    const removed = blockRows.splice(0, fieldGroup.fields.length + 1);
+    // remove the elements from the mdast tree that match the items in the removed array
+    removed.forEach((r) => {
+      remove(mdast, (n) => is(n, r));
+    });
+  }
+
   const blockItems = getBlockItems(mdast, modelHelper, definition, allowedComponents) || [];
 
-  return `<block${uniqueName} ${attributesStr}>${blockItems.length > 0 ? blockItems.join('\n') : ''}</block${uniqueName}>`;
+  return `<block${uniqueName} ${blockProperties}>${blockItems.length > 0 ? blockItems.join('\n') : ''}</block${uniqueName}>`;
 }
 
 export default gridTablePartial;
