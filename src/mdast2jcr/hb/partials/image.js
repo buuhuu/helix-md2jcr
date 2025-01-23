@@ -10,11 +10,15 @@
  * governing permissions and limitations under the License.
  */
 import Handlebars from 'handlebars';
+import { encodeHtml } from '../../utils.js';
 
 function image(context) {
   const uniqueName = Handlebars.helpers.nameHelper.call(context, 'image');
   const { alt, url } = context;
-  return `<image${uniqueName} sling:resourceType="core/franklin/components/image/v1/image" jcr:primaryType="nt:unstructured" fileReference="${url}" alt="${alt}"/>\n`;
+
+  const encoded = encodeHtml(url);
+  return `<image${uniqueName} sling:resourceType="core/franklin/components/image/v1/image" 
+    jcr:primaryType="nt:unstructured" fileReference="${encoded}" alt="${alt}"/>\n`;
 }
 
 export default image;
