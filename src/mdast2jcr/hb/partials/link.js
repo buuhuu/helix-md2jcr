@@ -20,7 +20,7 @@ function link(context) {
     'sling:resourceType': 'core/franklin/components/button/v1/button',
     'jcr:primaryType': 'nt:unstructured',
     link: url,
-    linkText: child.value,
+    linkText: child?.value || '',
   };
   if (title != null) {
     attributes.linkTitle = title;
