@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/adobe/helix-md2jcr/compare/v1.0.3...v1.0.4) (2025-01-28)
+
+
+### Bug Fixes
+
+* fix typo and silence eslint warning ([#41](https://github.com/adobe/helix-md2jcr/issues/41)) ([b1f9e51](https://github.com/adobe/helix-md2jcr/commit/b1f9e51dc08caef83ab092a4195d2f6a95a26af3))
+
 ## [1.0.3](https://github.com/adobe/helix-md2jcr/compare/v1.0.2...v1.0.3) (2025-01-28)
 
 
