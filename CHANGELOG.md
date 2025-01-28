@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/adobe/helix-md2jcr/compare/v1.0.2...v1.0.3) (2025-01-28)
+
+
+### Bug Fixes
+
+* remove private ([#39](https://github.com/adobe/helix-md2jcr/issues/39)) ([1358e6d](https://github.com/adobe/helix-md2jcr/commit/1358e6dda7950a25d4b8a99bb5e4fbbf87b4c0d5))
+
 ## [1.0.2](https://github.com/adobe/helix-md2jcr/compare/v1.0.1...v1.0.2) (2025-01-28)
 
 
