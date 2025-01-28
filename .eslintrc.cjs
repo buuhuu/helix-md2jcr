@@ -29,7 +29,7 @@ module.exports = {
   },
   plugins: ['import'],
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       exports: {},
     },
   },
