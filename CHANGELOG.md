@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/adobe/helix-md2jcr/compare/v1.0.4...v1.0.5) (2025-01-30)
+
+
+### Bug Fixes
+
+* **sites-28655:** blocks that have no model are missing properties ([#42](https://github.com/adobe/helix-md2jcr/issues/42)) ([7b07416](https://github.com/adobe/helix-md2jcr/commit/7b07416bb0fb691c9cfc1213b8e87362a87980b6))
+
 ## [1.0.4](https://github.com/adobe/helix-md2jcr/compare/v1.0.3...v1.0.4) (2025-01-28)
 
 
