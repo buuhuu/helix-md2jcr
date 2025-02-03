@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/adobe/helix-md2jcr/compare/v1.0.5...v1.0.6) (2025-02-03)
+
+
+### Bug Fixes
+
+* unsupported elements, include all template fields ([#43](https://github.com/adobe/helix-md2jcr/issues/43)) ([4cba7ec](https://github.com/adobe/helix-md2jcr/commit/4cba7ec79aee391a908c680519cf45429cb9bdb8))
+
 ## [1.0.5](https://github.com/adobe/helix-md2jcr/compare/v1.0.4...v1.0.5) (2025-01-30)
 
 
