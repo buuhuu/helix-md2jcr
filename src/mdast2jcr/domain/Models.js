@@ -21,13 +21,14 @@
  * Get the model id from the array of models.
  * @param {Array<Model>} models The array of models.
  * @param {string} modelId The model id.
- * @return {Model}
+ * @return {Model|null} The model or undefined if not found.
  */
 function findModelById(models, modelId) {
-  if (!models || Object.keys(models)?.length === 0) {
-    throw new Error('No models are provided. Check your model\'s JSON file.');
+  if (models && Object.keys(models)?.length > 0) {
+    return models.find((model) => model.id === modelId);
+  } else {
+    return undefined;
   }
-  return models.find((model) => model.id === modelId);
 }
 
 /**
@@ -40,7 +41,21 @@ function getField(model, fieldName) {
   return model.fields.find((field) => field.name === fieldName);
 }
 
+/**
+ * Return a comma-separated list of fields in the model. If no fields are found,
+ * return an empty string.
+ * @param model
+ * @return {string}
+ */
+function getModelFields(model) {
+  return model.fields
+    .map((f) => f.name)
+    .filter((f) => f !== 'classes')
+    .join(',');
+}
+
 export {
   getField,
   findModelById,
+  getModelFields,
 };
