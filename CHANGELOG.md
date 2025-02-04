@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/adobe/helix-md2jcr/compare/v1.0.7...v1.0.8) (2025-02-04)
+
+
+### Bug Fixes
+
+* **sites-28652:** include model fields property into the generated xml node structure ([#45](https://github.com/adobe/helix-md2jcr/issues/45)) ([7699250](https://github.com/adobe/helix-md2jcr/commit/769925099ccb7edb37544dc5767aec857297ed4a))
+* **sites-28737:** title should use title and not jcr:title ([#47](https://github.com/adobe/helix-md2jcr/issues/47)) ([e843c08](https://github.com/adobe/helix-md2jcr/commit/e843c0876e3a40473e06b40b999977ce6bee3422))
+
 ## [1.0.7](https://github.com/adobe/helix-md2jcr/compare/v1.0.6...v1.0.7) (2025-02-03)
 
 
