@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/adobe/helix-md2jcr/compare/v1.0.12...v1.0.13) (2025-02-18)
+
+
+### Bug Fixes
+
+* **sites-29333:** update image block to use image not fileReference ([#56](https://github.com/adobe/helix-md2jcr/issues/56)) ([8b9cf28](https://github.com/adobe/helix-md2jcr/commit/8b9cf28063986ba3591bdea0b8a1144073b89a85))
+
 ## [1.0.12](https://github.com/adobe/helix-md2jcr/compare/v1.0.11...v1.0.12) (2025-02-11)
 
 
