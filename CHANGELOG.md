@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/adobe/helix-md2jcr/compare/v1.0.13...v1.0.14) (2025-02-21)
+
+
+### Bug Fixes
+
+* **sites-24827:** parse and map page properties ([#57](https://github.com/adobe/helix-md2jcr/issues/57)) ([93448a0](https://github.com/adobe/helix-md2jcr/commit/93448a0fb3da7694fc01513d598a16ae0f10eefb))
+
 ## [1.0.13](https://github.com/adobe/helix-md2jcr/compare/v1.0.12...v1.0.13) (2025-02-18)
 
 
