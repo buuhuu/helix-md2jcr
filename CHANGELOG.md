@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/adobe/helix-md2jcr/compare/v1.0.14...v1.0.15) (2025-02-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency hast-util-to-html to v9.0.5 ([#58](https://github.com/adobe/helix-md2jcr/issues/58)) ([9089f60](https://github.com/adobe/helix-md2jcr/commit/9089f609c6704c5c2853895b879e6b56e66b716d))
+
 ## [1.0.14](https://github.com/adobe/helix-md2jcr/compare/v1.0.13...v1.0.14) (2025-02-21)
 
 
