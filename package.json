@@ -1,6 +1,6 @@
 {
   "name": "@adobe/helix-md2jcr",
-  "version": "1.0.16",
+  "version": "1.1.0",
   "description": "Helix Service that converts markdown to JCR content structure",
   "main": "src/index.js",
   "type": "module",

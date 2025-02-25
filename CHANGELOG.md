@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/adobe/helix-md2jcr/compare/v1.0.16...v1.1.0) (2025-02-25)
+
+
+### Features
+
+* **sites-29456:** support eds markdown ([#59](https://github.com/adobe/helix-md2jcr/issues/59)) ([400565a](https://github.com/adobe/helix-md2jcr/commit/400565af9096c8c549fd48b59f1a9ac58e9ec2f9))
+
 ## [1.0.16](https://github.com/adobe/helix-md2jcr/compare/v1.0.15...v1.0.16) (2025-02-25)
 
 
