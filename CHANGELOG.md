@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/adobe/helix-md2jcr/compare/v1.1.0...v1.1.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/remark-gridtables to v3.0.10 ([#61](https://github.com/adobe/helix-md2jcr/issues/61)) ([f6e113d](https://github.com/adobe/helix-md2jcr/commit/f6e113d532bc9e844c09744452a9a8e18c7e821b))
+
 # [1.1.0](https://github.com/adobe/helix-md2jcr/compare/v1.0.16...v1.1.0) (2025-02-25)
 
 
