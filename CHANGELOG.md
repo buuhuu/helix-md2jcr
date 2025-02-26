@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/adobe/helix-md2jcr/compare/v1.1.1...v1.1.2) (2025-02-26)
+
+
+### Bug Fixes
+
+* **sites-29541:** allow model fields to be in mixed order ([#62](https://github.com/adobe/helix-md2jcr/issues/62)) ([c7592c4](https://github.com/adobe/helix-md2jcr/commit/c7592c4a6825bc9b2a53b48034a1691fef263001))
+
 ## [1.1.1](https://github.com/adobe/helix-md2jcr/compare/v1.1.0...v1.1.1) (2025-02-25)
 
 
