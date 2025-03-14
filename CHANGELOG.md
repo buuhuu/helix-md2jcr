@@ -1,3 +1,11 @@
+## [1.1.7](https://github.com/adobe/helix-md2jcr/compare/v1.1.6...v1.1.7) (2025-03-14)
+
+
+### Bug Fixes
+
+* empty section metadata ([997b381](https://github.com/adobe/helix-md2jcr/commit/997b381b03dd0d27a0862c85a95d1398561a0985))
+* **release:** force release ([0e09e14](https://github.com/adobe/helix-md2jcr/commit/0e09e14fd189e128eb741c44e3bbb610dddf03e2))
+
 ## [1.1.6](https://github.com/adobe/helix-md2jcr/compare/v1.1.5...v1.1.6) (2025-03-09)
 
 
