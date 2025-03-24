@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/adobe/helix-md2jcr/compare/v1.1.8...v1.1.9) (2025-03-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency xml-formatter to v3.6.5 ([#74](https://github.com/adobe/helix-md2jcr/issues/74)) ([d0b90df](https://github.com/adobe/helix-md2jcr/commit/d0b90dfe495faf7b1aa62aecf4654a12abd71c50))
+
 ## [1.1.8](https://github.com/adobe/helix-md2jcr/compare/v1.1.7...v1.1.8) (2025-03-16)
 
 
