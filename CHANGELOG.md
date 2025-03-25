@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/adobe/helix-md2jcr/compare/v1.1.9...v1.1.10) (2025-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-shared-process-queue to v3.1.3 ([#76](https://github.com/adobe/helix-md2jcr/issues/76)) ([a6e5868](https://github.com/adobe/helix-md2jcr/commit/a6e5868a4bde0ffd7154ec61e7b8364dbde4cc13))
+
 ## [1.1.9](https://github.com/adobe/helix-md2jcr/compare/v1.1.8...v1.1.9) (2025-03-24)
 
 
