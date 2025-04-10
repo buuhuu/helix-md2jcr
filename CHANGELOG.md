@@ -1,3 +1,10 @@
+## [1.1.12](https://github.com/adobe/helix-md2jcr/compare/v1.1.11...v1.1.12) (2025-04-10)
+
+
+### Bug Fixes
+
+* missing required primary type on block items ([#81](https://github.com/adobe/helix-md2jcr/issues/81)) ([e5d2139](https://github.com/adobe/helix-md2jcr/commit/e5d2139620fa00d76a4a051250e4c7eb9e0949a7))
+
 ## [1.1.11](https://github.com/adobe/helix-md2jcr/compare/v1.1.10...v1.1.11) (2025-04-07)
 
 
