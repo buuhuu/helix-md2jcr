@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" jcr:primaryType="cq:Page">
+  <jcr:content cq:template="/libs/core/franklin/templates/page" sling:resourceType="core/franklin/components/page/v1/page" jcr:primaryType="cq:PageContent">
+    <root jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/root/v1/root">
+      <section sling:resourceType="core/franklin/components/section/v1/section" jcr:primaryType="nt:unstructured">
+        <block sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="rock-bands" name="Rock Bands">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="Rush" members="Geddy Lee" instruments="Piano"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="Aerosmith" members="Steven Tyler" instruments="Bass"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="The Tragically Hip" members="Gord Downie" instruments="Electric"></item_2>
+        </block>
+        <block_1 sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="rock-bands" name="Rock Bands">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" members="Geddy Lee" instruments="Piano"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="Aerosmith" instruments="Bass"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="The Tragically Hip" members="Gord Downie"></item_2>
+        </block_1>
+        <block_2 sling:resourceType="core/franklin/components/block/v1/block" jcr:primaryType="nt:unstructured" filter="rock-bands" name="Rock Bands">
+          <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" instruments="Piano"></item_0>
+          <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" bandname="Aerosmith"></item_1>
+          <item_2 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Rock Band" model="rock-band" modelFields="[bandname,members,instruments]" members="Gord Downie"></item_2>
+        </block_2>
+      </section>
+    </root>
+  </jcr:content>
+</jcr:root>
