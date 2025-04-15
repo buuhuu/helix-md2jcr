@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/adobe/helix-md2jcr/compare/v1.1.12...v1.1.13) (2025-04-15)
+
+
+### Bug Fixes
+
+* **sites-30804:** container blocks throw error with empty cell ([#82](https://github.com/adobe/helix-md2jcr/issues/82)) ([abbd3c2](https://github.com/adobe/helix-md2jcr/commit/abbd3c28a44990e29e08f242e13954f14fb63bbe))
+
 ## [1.1.12](https://github.com/adobe/helix-md2jcr/compare/v1.1.11...v1.1.12) (2025-04-10)
 
 
