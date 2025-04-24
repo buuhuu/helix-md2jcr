@@ -1,3 +1,10 @@
+## [1.1.14](https://github.com/adobe/helix-md2jcr/compare/v1.1.13...v1.1.14) (2025-04-24)
+
+
+### Bug Fixes
+
+* support parsing links in blocks ([d391736](https://github.com/adobe/helix-md2jcr/commit/d3917369ce248c35e30ed36231eb4b15bb893a13))
+
 ## [1.1.13](https://github.com/adobe/helix-md2jcr/compare/v1.1.12...v1.1.13) (2025-04-15)
 
 
