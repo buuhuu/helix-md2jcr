@@ -160,6 +160,10 @@ describe('md2jcr Tests', () => {
     it('missing-cell-data', async () => {
       await testBlock('missing-cell-data', `${folder}/missing-cell-data`);
     });
+
+    it('suffixes', async () => {
+      await testBlock('suffixes', `${folder}/suffixes`);
+    });
   });
 
   /**

@@ -107,8 +107,9 @@ function collapseField(id, fields, node, parentNode, properties) {
           properties[field.name] = link.getType(parentNode);
         }
       } else if (link.supports(node)) {
-        if (suffix === 'Text') {
-          properties[field.name] = encodeHTMLEntities(link.getProperties(node).text);
+        if (suffix === 'Text' || suffix === 'Title') {
+          const value = link.getProperties(node)[suffix.toLowerCase()];
+          properties[field.name] = encodeHTMLEntities(value);
         } else {
           properties[field.name] = encodeHTMLEntities(node[suffix.toLowerCase()]);
         }

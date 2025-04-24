@@ -38,6 +38,7 @@ const link = {
     return {
       href: node.url,
       text: text?.value || '',
+      title: node.title || '',
     };
   },
 
