@@ -1,3 +1,10 @@
+## [1.1.15](https://github.com/adobe/helix-md2jcr/compare/v1.1.14...v1.1.15) (2025-04-28)
+
+
+### Bug Fixes
+
+* when generating title text use titleType ([#86](https://github.com/adobe/helix-md2jcr/issues/86)) ([a973478](https://github.com/adobe/helix-md2jcr/commit/a97347837b4bc4ccd54b42efe8d771283d24954d))
+
 ## [1.1.14](https://github.com/adobe/helix-md2jcr/compare/v1.1.13...v1.1.14) (2025-04-24)
 
 
