@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/adobe/helix-md2jcr/compare/v1.1.15...v1.1.16) (2025-05-05)
+
+
+### Bug Fixes
+
+* allow raw html to be inserted in richtext ([#88](https://github.com/adobe/helix-md2jcr/issues/88)) ([35980a3](https://github.com/adobe/helix-md2jcr/commit/35980a3d5f5ddffd097224e1f1efcc50823cd118))
+
 ## [1.1.15](https://github.com/adobe/helix-md2jcr/compare/v1.1.14...v1.1.15) (2025-04-28)
 
 
