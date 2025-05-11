@@ -1,3 +1,10 @@
+## [1.1.18](https://github.com/adobe/helix-md2jcr/compare/v1.1.17...v1.1.18) (2025-05-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/fetch to v4.2.1 ([#92](https://github.com/adobe/helix-md2jcr/issues/92)) ([ff6f8e9](https://github.com/adobe/helix-md2jcr/commit/ff6f8e905c701bd503aad0fb6678b5edb9b73382))
+
 ## [1.1.17](https://github.com/adobe/helix-md2jcr/compare/v1.1.16...v1.1.17) (2025-05-07)
 
 
