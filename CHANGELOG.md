@@ -1,3 +1,10 @@
+## [1.1.21](https://github.com/adobe/helix-md2jcr/compare/v1.1.20...v1.1.21) (2025-05-30)
+
+
+### Bug Fixes
+
+* image alt text encode characters ([#100](https://github.com/adobe/helix-md2jcr/issues/100)) ([3d8f683](https://github.com/adobe/helix-md2jcr/commit/3d8f683abb3958556bbd289df728cba1f556230d))
+
 ## [1.1.20](https://github.com/adobe/helix-md2jcr/compare/v1.1.19...v1.1.20) (2025-05-26)
 
 
