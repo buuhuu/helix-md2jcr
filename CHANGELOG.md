@@ -1,3 +1,10 @@
+## [1.1.22](https://github.com/adobe/helix-md2jcr/compare/v1.1.21...v1.1.22) (2025-06-12)
+
+
+### Bug Fixes
+
+* **103:** custom section metadata fields not being added to jcr result ([#104](https://github.com/adobe/helix-md2jcr/issues/104)) ([bd4b5e6](https://github.com/adobe/helix-md2jcr/commit/bd4b5e69287badbd1ccead61066472231390c9eb))
+
 ## [1.1.21](https://github.com/adobe/helix-md2jcr/compare/v1.1.20...v1.1.21) (2025-05-30)
 
 
