@@ -38,7 +38,7 @@ function findModelById(models, modelId) {
  * @return {Field} field The field or undefined if not found.
  */
 function getField(model, fieldName) {
-  return model ? model.fields.find((field) => field.name === fieldName) : null;
+  return model ? model.fields.find((field) => field.name === fieldName) : undefined;
 }
 
 /**
@@ -47,7 +47,7 @@ function getField(model, fieldName) {
  * @return {Array<string>} An array of field names.
  */
 function getModelFieldNames(model) {
-  return model 
+  return model
     ? model.fields
       .map((f) => f.name)
       .filter((f) => f !== 'classes')

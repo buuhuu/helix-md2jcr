@@ -19,93 +19,113 @@ import {
 } from '../src/mdast2jcr/domain/Models.js';
 
 describe('Models Utility Test', () => {
-  it('should return the model with the given id', () => {
-    const models = [
-      { id: '1', name: 'model1' },
-      { id: '2', name: 'model2' },
-      { id: '3', name: 'model3' },
-    ];
-    const modelId = '2';
-    const expectedModel = { id: '2', name: 'model2' };
+  describe('findModelById', () => {
+    it('should return the model with the given id', () => {
+      const models = [
+        { id: '1', name: 'model1' },
+        { id: '2', name: 'model2' },
+        { id: '3', name: 'model3' },
+      ];
+      const modelId = '2';
+      const expectedModel = { id: '2', name: 'model2' };
 
-    const result = findModelById(models, modelId);
-    assert.deepStrictEqual(result, expectedModel);
+      const result = findModelById(models, modelId);
+      assert.deepStrictEqual(result, expectedModel);
+    });
+
+    it('should return undefined if the model is not found', () => {
+      const models = [
+        { id: '1', name: 'model1' },
+        { id: '2', name: 'model2' },
+        { id: '3', name: 'model3' },
+      ];
+      const modelId = '4';
+
+      const result = findModelById(models, modelId);
+      assert.strictEqual(result, undefined);
+    });
   });
 
-  it('should return undefined if the model is not found', () => {
-    const models = [
-      { id: '1', name: 'model1' },
-      { id: '2', name: 'model2' },
-      { id: '3', name: 'model3' },
-    ];
-    const modelId = '4';
+  describe('getField', () => {
+    it('should return the field with the given name', () => {
+      const model = {
+        fields: [
+          { name: 'title', type: 'string' },
+          { name: 'description', type: 'string' },
+        ],
+      };
+      const fieldName = 'title';
+      const expectedField = { name: 'title', type: 'string' };
 
-    const result = findModelById(models, modelId);
-    assert.strictEqual(result, undefined);
+      const result = getField(model, fieldName);
+      assert.deepStrictEqual(result, expectedField);
+    });
+
+    it('should return undefined if the field is not found', () => {
+      const model = {
+        fields: [
+          { name: 'title', type: 'string' },
+          { name: 'description', type: 'string' },
+        ],
+      };
+      const fieldName = 'nonexistent';
+
+      const result = getField(model, fieldName);
+      assert.strictEqual(result, undefined);
+    });
+
+    it('should return undefined if the model is falsy', () => {
+      const fieldName = 'title';
+
+      const result = getField(null, fieldName);
+      assert.strictEqual(result, undefined);
+    });
   });
 
-  it('should return the field with the given name', () => {
-    const model = {
-      fields: [
-        { name: 'title', type: 'string' },
-        { name: 'description', type: 'string' },
-      ],
-    };
-    const fieldName = 'title';
-    const expectedField = { name: 'title', type: 'string' };
+  describe('getModelFieldNames', () => {
+    it('should return an array of field names excluding "classes"', () => {
+      const model = {
+        fields: [
+          { name: 'title', type: 'string' },
+          { name: 'classes', type: 'string' },
+          { name: 'content', type: 'string' },
+        ],
+      };
+      const expectedFields = ['title', 'content'];
 
-    const result = getField(model, fieldName);
-    assert.deepStrictEqual(result, expectedField);
-  });
+      const result = getModelFieldNames(model, true);
+      assert.deepStrictEqual(result, expectedFields);
+    });
 
-  it('should return undefined if the field is not found', () => {
-    const model = {
-      fields: [
-        { name: 'title', type: 'string' },
-        { name: 'description', type: 'string' },
-      ],
-    };
-    const fieldName = 'nonexistent';
+    it('should exclude the "classes" field from the list', () => {
+      const model = {
+        fields: [
+          { name: 'title', type: 'string' },
+          { name: 'classes', type: 'string' },
+          { name: 'content', type: 'string' },
+        ],
+      };
+      const expectedFields = ['title', 'content'];
 
-    const result = getField(model, fieldName);
-    assert.strictEqual(result, undefined);
-  });
+      const result = getModelFieldNames(model);
+      assert.deepEqual(result, expectedFields);
+    });
 
-  it('should return an array of field names excluding "classes"', () => {
-    const model = {
-      fields: [
-        { name: 'title', type: 'string' },
-        { name: 'classes', type: 'string' },
-        { name: 'content', type: 'string' },
-      ],
-    };
-    const expectedFields = ['title', 'content'];
+    it('should return an empty array if there are no fields', () => {
+      const model = {
+        fields: [],
+      };
+      const expectedFields = [];
 
-    const result = getModelFieldNames(model, true);
-    assert.deepStrictEqual(result, expectedFields);
-  });
+      const result = getModelFieldNames(model);
+      assert.deepEqual(result, expectedFields);
+    });
 
-  it('should exclude the "classes" field from the list', () => {
-    const model = {
-      fields: [
-        { name: 'title', type: 'string' },
-        { name: 'classes', type: 'string' },
-        { name: 'content', type: 'string' },
-      ],
-    };
-    const expectedFields = ['title', 'content'];
+    it('should return an empty array if model is falsy', () => {
+      const expectedFields = [];
 
-    const result = getModelFieldNames(model);
-    assert.deepEqual(result, expectedFields);
-  });
-
-  it('should return an empty string if there are no fields', () => {
-    const model = {
-      fields: [],
-    };
-    const expectedFields = [];
-
-    const result = getModelFieldNames(model);
-    assert.deepEqual(result, expectedFields);
+      const result = getModelFieldNames(null);
+      assert.deepEqual(result, expectedFields);
+    });
   });
 });
