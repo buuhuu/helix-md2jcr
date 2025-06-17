@@ -1,3 +1,10 @@
+## [1.1.23](https://github.com/adobe/helix-md2jcr/compare/v1.1.22...v1.1.23) (2025-06-17)
+
+
+### Bug Fixes
+
+* gracefully handle non existing models ([#106](https://github.com/adobe/helix-md2jcr/issues/106)) ([7564c93](https://github.com/adobe/helix-md2jcr/commit/7564c938c51dd00af66c292c5b0c71a306462127))
+
 ## [1.1.22](https://github.com/adobe/helix-md2jcr/compare/v1.1.21...v1.1.22) (2025-06-12)
 
 
