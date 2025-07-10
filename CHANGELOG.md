@@ -1,3 +1,10 @@
+## [1.1.26](https://github.com/adobe/helix-md2jcr/compare/v1.1.25...v1.1.26) (2025-07-10)
+
+
+### Bug Fixes
+
+* cards items with classes field, but not value fail to render ([#116](https://github.com/adobe/helix-md2jcr/issues/116)) ([60f7e77](https://github.com/adobe/helix-md2jcr/commit/60f7e77422cc77b3a8641166089b8bc726c72007))
+
 ## [1.1.25](https://github.com/adobe/helix-md2jcr/compare/v1.1.24...v1.1.25) (2025-06-27)
 
 
