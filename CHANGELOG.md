@@ -1,3 +1,10 @@
+## [1.1.27](https://github.com/adobe/helix-md2jcr/compare/v1.1.26...v1.1.27) (2025-07-16)
+
+
+### Bug Fixes
+
+* component class sets modelId from template definition instead of id property ([#121](https://github.com/adobe/helix-md2jcr/issues/121)) ([c0304d2](https://github.com/adobe/helix-md2jcr/commit/c0304d2f2df1a5d5cd52dfc2c9d6e9dee2bfc8e0)), closes [#120](https://github.com/adobe/helix-md2jcr/issues/120)
+
 ## [1.1.26](https://github.com/adobe/helix-md2jcr/compare/v1.1.25...v1.1.26) (2025-07-10)
 
 
